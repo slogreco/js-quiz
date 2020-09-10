@@ -1,4 +1,3 @@
-
 let quizContainer = document.getElementById("quiz");
 let resultsContainer = document.getElementById("results");
 let submitButton = document.getElementById("submit");
@@ -87,6 +86,8 @@ function startQuiz() {
     quizContainer.innerHTML = output.join('');
 }
 
+startQuiz();
+
 function showResults() {
     let answerContainers = quizContainer.querySelectorAll(".answers");
 
@@ -111,6 +112,6 @@ function showResults() {
     resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
 }
 
-startQuiz();
+
 
 submitButton.addEventListener("click", showResults);
