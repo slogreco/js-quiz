@@ -52,20 +52,20 @@ console.log(quizQuestions);
 
 function startQuiz() {
 
-    // variable to store the HTML output
+
     let output = [];
 
-    // for each question...
+
     quizQuestions.forEach(
         (currentQuestion, questionNumber) => {
 
-            // variable to store the list of possible answers
+
             let answers = [];
 
-            // and for each available answer...
+
             for (letter in currentQuestion.answers) {
 
-                // ...add an HTML radio button
+
                 answers.push(
                     `<label>
                   <input type="radio" name="question${questionNumber}" value="${letter}">
@@ -75,7 +75,7 @@ function startQuiz() {
                 );
             }
 
-            // add this question and its answers to the output
+
             output.push(
                 `<div class="question"> ${currentQuestion.question} </div>
               <div class="answers"> ${answers.join('')} </div>`
@@ -83,12 +83,32 @@ function startQuiz() {
         }
     );
 
-    // finally combine our output list into one string of HTML and put it on the page
+
     quizContainer.innerHTML = output.join('');
 }
 
 function showResults() {
+    let answerContainers = quizContainer.querySelectorAll(".answers");
 
+    let numCorrect = 0
+
+    quizQuestions.forEach((currentQuestion, questionNumber) => {
+        let answerContainer = answerContainers[questionNumber];
+        let selector = `input[name=question${questionNumber}]:checked`;
+        const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+
+
+        if (userAnswer === currentQuestion.correctAnswer) {
+            numCorrect++;
+            answerContainers[questionNumber].style.color = 'lightgreen';
+        }
+
+        else {
+            answerContainers[questionNumber].style.color = 'red';
+        }
+    });
+    
+    resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
 }
 
 startQuiz();
