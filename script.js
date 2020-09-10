@@ -1,8 +1,8 @@
 
-const quizContainer = document.getElementById("quiz");
-const resultsContainer = document.getElementById("results");
-const submitButton = document.getElementById("submit");
-const quizQuestions = [
+let quizContainer = document.getElementById("quiz");
+let resultsContainer = document.getElementById("results");
+let submitButton = document.getElementById("submit");
+let quizQuestions = [
     {
         question: "Inside which HTML element do we put JavaSCript?",
         answers: {
@@ -53,14 +53,14 @@ console.log(quizQuestions);
 function startQuiz() {
 
     // variable to store the HTML output
-    const output = [];
+    let output = [];
 
     // for each question...
     quizQuestions.forEach(
         (currentQuestion, questionNumber) => {
 
             // variable to store the list of possible answers
-            const answers = [];
+            let answers = [];
 
             // and for each available answer...
             for (letter in currentQuestion.answers) {
